@@ -40,4 +40,22 @@ public class StuMapperTest {
         int count = mapper.getStuTotalCount(args);
         System.out.println("count = " + count);
     }
+
+    @Test
+    public void testFindStuById() throws Exception {
+        Student student = mapper.findStuById(2);
+        System.out.println("student = " + student);
+    }
+
+    @Test
+    public void testUpdateStuById() throws Exception {
+        // 先查询，再修改
+        Student student = mapper.findStuById(2);
+        System.out.println(student);
+        student.setAddress("广西柳州市城中区东环大道268号");
+
+        boolean success = mapper.updateStuById(student);
+        System.out.println("success=" + success);
+    }
+
 }

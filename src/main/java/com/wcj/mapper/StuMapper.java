@@ -12,5 +12,6 @@ public interface StuMapper {
     int insertStus(List<Student> list) throws Exception;
     List<Student> getStuList(Map<String, Object> args) throws Exception;
     int getStuTotalCount(Map<String, Object> args) throws Exception;
-    boolean updateStu(Student student) throws Exception;
+    boolean updateStuById(Student student) throws Exception;
+    Student findStuById(int id) throws Exception;
 }

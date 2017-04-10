@@ -213,10 +213,10 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", sid='" + sid + '\'' +
                 ", pwd='" + pwd + '\'' +
-                ", gender=" + gender +
+                ", gender='" + gender + '\'' +
                 ", birth='" + birth + '\'' +
                 ", nation='" + nation + '\'' +
-                ", politis_status='" + politics_status + '\'' +
+                ", politics_status='" + politics_status + '\'' +
                 ", school='" + school + '\'' +
                 ", collage='" + collage + '\'' +
                 ", major='" + major + '\'' +
@@ -225,6 +225,8 @@ public class Student {
                 ", qq='" + qq + '\'' +
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", address='" + address + '\'' +
+                ", stuMap=" + stuMap +
                 '}';
     }
 

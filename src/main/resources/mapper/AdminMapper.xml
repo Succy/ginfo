@@ -5,4 +5,11 @@
     <select id="findAdminByTidAndPwd" parameterType="Admin" resultType="Admin">
         SELECT * FROM admin WHERE tid = #{tid} AND pwd = #{pwd}
     </select>
+    <update id="updateAdminById" parameterType="Admin">
+        UPDATE admin SET tid = #{tid},  pwd = #{pwd}, title = #{title}, dept = #{dept},  name = #{name}
+    </update>
+
+    <select id="findAdminById" parameterType="int" resultType="Admin">
+        SELECT * FROM admin WHERE id=#{id}
+    </select>
 </mapper>
