@@ -1,0 +1,63 @@
+.mr-icons {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	background: url(../img/icons_mr.png) no-repeat;
+	margin: 0 24px 0 29px;
+}
+
+.mr-base-i {
+	background-position: -24px -117px;
+}
+
+.mr-base-i.active {
+	background-position: -5px -117px;
+}
+
+.mr-works-i {
+	background-position: -24px -137px;
+}
+
+.mr-works-i.active {
+	background-position: -5px -137px;
+}
+
+.mr-edu-i {
+	background-position: -23px -156px;
+}
+
+.mr-edu-i.active {
+	background-position: -4px -156px;
+}
+
+.mr-prod-i {
+	background-position: -66px -198px;
+}
+
+.mr-prod-i.active {
+	background-position: -5px -198px;
+}
+
+.mr-hopework-i {
+	background-position: -63px -239px;
+}
+
+.mr-hopework-i.active {
+	background-position: -5px -240px;
+}
+
+.mr-skill-i {
+	background-position: -66px -262px;
+}
+
+.mr-skill-i.active {
+	background-position: -5px -262px;
+}
+
+.mr-self-i {
+	background-position: -67px -218px;
+}
+
+.mr-self-i.active {
+	background-position: -5px -218px;
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext-*.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:springmvc.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>*.action</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>stuLoginFilter</filter-name>
+        <filter-class>com.wcj.filter.StuLoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>stuLoginFilter</filter-name>
+        <url-pattern>/jsp/index.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>adminLoginFilter</filter-name>
+        <filter-class>com.wcj.filter.AdminLoginFilter</filter-class>
+    </filter>
+    <!--如果需要配置多个url被该过滤器拦截，可以配置多个filter-mapping-->
+    <filter-mapping>
+        <filter-name>adminLoginFilter</filter-name>
+        <url-pattern>/jsp/admin/admin.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>adminLoginFilter</filter-name>
+        <url-pattern>/jsp/admin/studentList.jsp</url-pattern>
+    </filter-mapping>
+
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
+        

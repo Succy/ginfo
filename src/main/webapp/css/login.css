@@ -1,0 +1,109 @@
+
+html, body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+header {
+    width: 100%;
+    height: 50%;
+    background-color: #00B38A;
+}
+
+footer {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    background-color: #ffffff;
+}
+
+footer .f-msg {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    color: #D1D3DD;
+}
+
+.login-box {
+    position: absolute;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    padding: 50px;
+    background-color: #ffffff;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.error-msg {
+    font-size: 12px;
+    color: red;
+    text-align: center;
+    margin-bottom: 3px
+}
+
+.form-item .forgot {
+    text-decoration: none;
+    color: #00B38A;
+    font-size: 15px;
+    text-align: right;
+}
+
+.form-item .forgot:hover {
+    text-decoration: underline;
+}
+
+.form-item .choose {
+
+}
+
+.form-item .choose {
+    overflow: hidden;
+}
+
+.form-item .choose > p {
+    color: #00B38A;
+    margin-bottom: 5px;
+}
+
+.form-item .choose > span.first {
+    margin-right: 14px;
+}
+
+.form-item .choose > span {
+    display: inline-block;
+    width: 127px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid #dddddd;
+
+    background-color: #ffffff;
+    color: #333333;
+    cursor: pointer;
+}
+
+.form-item .choose > span.checked {
+    color: #00B38A;
+    border-color: #00B38A;
+}
+
+.form-item .login-btn {
+    width: 100%;
+    border: none;
+    background-color: #00B38A;
+    height: 35px;
+    display: inline-block;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+    color: #ffffff;
+}
+
+.form-item .login-btn:hover {
+    cursor: pointer;
+}
+
