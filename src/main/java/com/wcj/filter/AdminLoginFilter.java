@@ -37,10 +37,10 @@ public class AdminLoginFilter implements Filter {
             if (admin != null) {
                 chain.doFilter(req, resp);
             } else {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("/login.jsp");
             }
         } else {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("/login.jsp");
         }
     }
 

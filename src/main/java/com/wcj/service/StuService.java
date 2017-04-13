@@ -13,5 +13,6 @@ public interface StuService {
     List<Student> exportStus() throws Exception;
     Student findStuById(int id) throws Exception;
     boolean updateStuById(Student stu) throws Exception;
+    int updateStuPwd(int id, String oldPwd, String newPwd) throws Exception;
     boolean delStuById(int id) throws Exception;
 }

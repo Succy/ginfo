@@ -34,7 +34,7 @@
 
     <update id="updateStuById" parameterType="Student">
         UPDATE student SET sid = #{sid},  name=#{name},  gender = #{gender},  pwd = #{pwd}, address = #{address}, school = #{school}, collage=#{collage}, major=#{major}, grade=#{grade},  birth=#{birth},  nation=#{nation},
-         politics_status=#{politics_status}, qq=#{qq}, mobi=#{mobi}, email = #{email} WHERE id = #{id}
+         politics_status=#{politics_status}, qq=#{qq}, mobi=#{mobi}, email = #{email}, avatar=#{avatar} WHERE id = #{id}
     </update>
 
     <select id="findStuById" resultType="Student" parameterType="int">

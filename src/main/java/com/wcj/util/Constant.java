@@ -22,6 +22,12 @@ public class Constant {
     public static final boolean FAILURE = false;
     public static final String SEARCH_ARG = "searchArg";
 
+    public static final class RespCode {
+        public static final int OK = 0;
+        public static final int ERROR = -1;
+        public static final int OLD_PWD_ERR = -2;
+    }
+
     public static final class Info {
         public static final class Stu {
             public static final String ID = "id";

@@ -18,9 +18,11 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<!-- load css -->
-	<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css" media="all">
-	<link rel="stylesheet" type="text/css" href="../../css/global.css" media="all">
-	<link rel="stylesheet" type="text/css" href="../../css/adminstyle.css" media="all">
+	<link rel="stylesheet" type="text/css" href="../../layui/css/layui.css" >
+	<link rel="stylesheet" type="text/css" href="../../css/global.css">
+	<link rel="stylesheet" type="text/css" href="../../css/adminstyle.css">
+	<%--<link rel="stylesheet" type="text/css" href="../../css/commons.css">--%>
+
 </head>
 
 <body>
@@ -38,7 +40,8 @@
 				<!-- 右侧导航 -->
 				<ul class="layui-nav larry-header-item">
                     <li class="layui-nav-item">
-                        <a href="javascript:;">
+                        <input type="hidden" id="admId" value="${admin.id}">
+                        <a href="javascript:;" id="modify-pwd">
                             <i class="iconfont icon-iconfuzhi01" data-icon='icon-iconfuzhi01'></i> 修改密码
                         </a>
                     </li>
@@ -105,10 +108,27 @@
 			<!--</div>-->
 		</div>
 	</div>
+
+    <div id="modify-pwd-box">
+        <form method="post">
+            <div class="form-item">
+                <input type="password" name="sid" class="form-ctrl" id="oldPwd" placeholder="请输入旧密码">
+            </div>
+            <div class="form-item">
+                <input type="password" name="password" class="form-ctrl" id="newPwd" placeholder="请输入新密码">
+            </div>
+            <div class="form-item">
+                <input type="password" name="password" class="form-ctrl" id="confirm" placeholder="请再次确认密码">
+            </div>
+        </form>
+    </div>
 	<!-- 加载js文件-->
+    <script src="../../js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="../../layui/layui.all.js"></script>
 	<script type="text/javascript" src="../../js/larryAdmin.js"></script>
 	<script type="text/javascript" src="../../js/indexAdmin.js"></script>
+
+
 
 </body>
 </html>

@@ -77,6 +77,35 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/updatePwd.action")
+    public
+    @ResponseBody
+    JSONObject updatePwd(int id, String oldPwd, String newPwd, boolean isStu) {
+        JSONObject json = new JSONObject();
+        boolean success = Constant.FAILURE;
+        int rt;
+        try {
+            if (isStu) {
+                rt = stuService.updateStuPwd(id, oldPwd, newPwd);
+            } else {
+                rt = adminService.updatePwd(id, oldPwd, newPwd);
+            }
+            if (rt == Constant.RespCode.OK) {
+                success = true;
+                json.put("msg", "修改密码成功");
+            } else if (rt == Constant.RespCode.OLD_PWD_ERR) {
+                json.put("msg", "旧密码错误");
+            } else {
+                json.put("msg", "网络错误，请稍后重试");
+            }
+        } catch (Exception e) {
+            json.put("msg", "网络错误，请稍后重试");
+        }
+        json.put("success", success);
+
+        return json;
+    }
+
     @RequestMapping("/logout.action")
     public String logout(boolean isStu, HttpSession session) {
         if (isStu) {
@@ -90,7 +119,7 @@ public class UserController {
     @RequestMapping("/uploadAvatar.action")
     public
     @ResponseBody
-    JSONObject uploadAvatar(MultipartFile avatarFile) {
+    JSONObject uploadAvatar(MultipartFile avatarFile, int id) {
         JSONObject json = new JSONObject();
         boolean success = false;
         String pictureFile_name = avatarFile.getOriginalFilename();
@@ -103,8 +132,7 @@ public class UserController {
             return json;
         }
         //新文件名称
-        String newFileName = UUID.randomUUID().toString() + suffix;
-
+        String newFileName = EncryptorUtils.md5(Constant.SALT, pictureFile_name) + suffix;
         String baseDir = "I:/idea_vd/avatar";
         File unloadAvatar = new File(baseDir + "/" + newFileName);
         if (!unloadAvatar.exists()) {
@@ -112,8 +140,13 @@ public class UserController {
         }
         try {
             avatarFile.transferTo(unloadAvatar);
-            success = true;
-        } catch (IOException e) {
+            String avatPath = "static/avatar/" + newFileName;
+            Student student = new Student();
+            student.setId(id);
+            student.setAvatar(avatPath);
+            success = stuService.updateStuById(student);
+            json.put("avatar", avatPath);
+        } catch (Exception e) {
             success = false;
         }
         String msg = success ? "图片上传成功" : "图片上传失败";

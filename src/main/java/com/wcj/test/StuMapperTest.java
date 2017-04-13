@@ -54,7 +54,10 @@ public class StuMapperTest {
         // 先查询，再修改
         Student student = mapper.findStuById(2);
         System.out.println(student);
-        student.setAddress("广西柳州市城中区东环大道268号");
+        Student stu = new Student();
+        stu.setAddress("广西南宁市西乡塘");
+
+        student.assign(stu);
 
         boolean success = mapper.updateStuById(student);
         System.out.println("success=" + success);

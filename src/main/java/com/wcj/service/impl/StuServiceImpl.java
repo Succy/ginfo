@@ -4,6 +4,7 @@ import com.wcj.entity.Student;
 import com.wcj.mapper.StuMapper;
 import com.wcj.service.StuService;
 import com.wcj.util.Constant;
+import com.wcj.util.EncryptorUtils;
 import com.wcj.util.POIUtils;
 import com.wcj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,6 +97,27 @@ public class StuServiceImpl implements StuService {
         }
 
         return false;
+    }
+
+    @Override
+    public int updateStuPwd(int id, String oldPwd, String newPwd) throws Exception {
+        oldPwd = EncryptorUtils.md5(Constant.SALT, oldPwd);
+        newPwd = EncryptorUtils.md5(Constant.SALT, newPwd);
+        int rt = Constant.RespCode.ERROR;
+        Student stu = stuMapper.findStuById(id);
+        if (stu != null) {
+            String pwd = stu.getPwd();
+            if (pwd.equals(oldPwd)) {
+                stu.setPwd(newPwd);
+                boolean result = stuMapper.updateStuById(stu);
+                if (result)
+                    rt = Constant.RespCode.OK;
+
+            }else {
+                rt = Constant.RespCode.OLD_PWD_ERR;
+            }
+        }
+        return rt;
     }
 
     @Override
