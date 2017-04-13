@@ -1,6 +1,7 @@
 package com.wcj.entity;
 
 import com.wcj.util.Constant;
+import com.wcj.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -204,6 +205,59 @@ public class Student {
         stuMap.put(Constant.Info.Stu.POLITICS_STATUS, this.politics_status);
         stuMap.put(Constant.Info.Stu.MAJOR, this.major);
         return this.stuMap;
+    }
+
+    /**
+     * 使用参数中的对象给this对象赋值
+     *
+     * @param stu
+     */
+    public void assign(Student stu) {
+        if (!StringUtils.isEmpty(stu.getSid())) {
+            this.sid = stu.getSid();
+        }
+        if (!StringUtils.isEmpty(stu.getName())) {
+            this.name = stu.getName();
+        }
+        if (!StringUtils.isEmpty(stu.getPwd())) {
+            this.pwd = stu.getPwd();
+        }
+        if (!StringUtils.isEmpty(stu.getAddress())) {
+            this.address = stu.getAddress();
+        }
+        if (!StringUtils.isEmpty(stu.getAvatar())) {
+            this.avatar = stu.getAvatar();
+        }
+        if (!StringUtils.isEmpty(stu.getBirth())) {
+            this.birth = stu.getBirth();
+        }
+        if (!StringUtils.isEmpty(stu.getCollage())) {
+            this.collage = stu.getCollage();
+        }
+        if (!StringUtils.isEmpty(stu.getGender())) {
+            this.gender = stu.getGender();
+        }
+        if (!StringUtils.isEmpty(stu.getGrade())) {
+            this.grade = stu.getGrade();
+        }
+        if (!StringUtils.isEmpty(stu.getEmail())) {
+            this.email = stu.getEmail();
+        }
+        if (!StringUtils.isEmpty(stu.getQq())) {
+            this.qq = stu.getQq();
+        }
+        if (!StringUtils.isEmpty(stu.getMajor())) {
+            this.major = stu.getMajor();
+        }
+        if (!StringUtils.isEmpty(stu.getMobi())) {
+            this.mobi = stu.getMobi();
+        }
+        if (!StringUtils.isEmpty(stu.getPolitics_status())) {
+            this.politics_status = stu.getPolitics_status();
+        }
+        if (!StringUtils.isEmpty(stu.getNation())) {
+            this.nation = stu.getNation();
+        }
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.wcj.entity;
 
+import com.wcj.util.StringUtils;
+
 /**
  * @author Succy
  * @date 2017-03-26 18:07
@@ -62,6 +64,24 @@ public class Admin {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void assign(Admin admin) {
+        if (!StringUtils.isEmpty(admin.getPwd())) {
+            this.pwd = admin.getPwd();
+        }
+        if (!StringUtils.isEmpty(admin.getDept())) {
+            this.dept = admin.getDept();
+        }
+        if (!StringUtils.isEmpty(admin.getTid())) {
+            this.tid = admin.getTid();
+        }
+        if (!StringUtils.isEmpty(admin.getTitle())) {
+            this.title = admin.getTitle();
+        }
+        if (!StringUtils.isEmpty(admin.getName())) {
+            this.name = admin.getName();
+        }
     }
 
     @Override
