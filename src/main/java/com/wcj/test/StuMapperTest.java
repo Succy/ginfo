@@ -30,7 +30,9 @@ public class StuMapperTest {
         params.put(Constant.PAGE, 0);
         params.put(Constant.SEARCH_ARG, "软件工程");
         List<Student> stuList = mapper.getStuList(params);
-        stuList.forEach(System.out::println);
+        for (Student student : stuList) {
+            System.out.println(student);
+        }
     }
 
     @Test

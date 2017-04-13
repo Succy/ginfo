@@ -13,7 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,9 +35,14 @@ public class POIUtilsTest {
             FileInputStream fin = new FileInputStream(outFileName);
             List<Student> students = POIUtils.importExcel(fin);
             if (students != null && !students.isEmpty()) {
-                students.stream().filter(student -> StringUtils.isEmpty(student.getPwd())).forEach(student -> student.setPwd(EncryptorUtils.md5(Constant.SALT, "123456")));
 
-                students.forEach(System.out::println);
+                for (Student student : students) {
+                    if (StringUtils.isEmpty(student.getPwd())) {
+                        student.setPwd(EncryptorUtils.md5(Constant.SALT, "123456"));
+                    }
+                    System.out.println(student);
+                }
+
 
                 Map<String, List<Student>> map = new HashMap<>();
                 map.put("stus", students);
@@ -49,6 +53,11 @@ public class POIUtilsTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testMapper() throws Exception{
+        System.out.println(mapper);
     }
 
     @Test
@@ -67,7 +76,9 @@ public class POIUtilsTest {
                 //
                 //boolean success = POIUtils.exportExcel(students, headers, out);
                 //System.out.println("is success: " + success);
-                students.forEach(System.out::println);
+                for (Student stu : students) {
+                    System.out.println(stu);
+                }
             }
 
         } catch (Exception e) {
