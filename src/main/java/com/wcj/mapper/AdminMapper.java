@@ -11,4 +11,5 @@ public interface AdminMapper {
     Admin findAdminByTidAndPwd(Admin admin) throws Exception;
     boolean updateAdminById(Admin admin) throws Exception;
     Admin findAdminById(int id) throws Exception;
+
 }

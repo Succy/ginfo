@@ -80,4 +80,26 @@ public class StuServiceImpl implements StuService {
         List<Student> stuList = stuMapper.getStuList(params);
         return stuList;
     }
+
+    @Override
+    public Student findStuById(int id) throws Exception {
+        return stuMapper.findStuById(id);
+    }
+
+    @Override
+    public boolean updateStuById(Student stu) throws Exception {
+        int id = stu.getId();
+        Student stuById = stuMapper.findStuById(id);
+        if (stuById != null) {
+            stuById.assign(stu);
+            return stuMapper.updateStuById(stuById);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean delStuById(int id) throws Exception {
+        return stuMapper.delStuById(id);
+    }
 }

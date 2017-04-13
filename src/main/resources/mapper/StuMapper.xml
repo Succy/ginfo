@@ -40,4 +40,8 @@
     <select id="findStuById" resultType="Student" parameterType="int">
         SELECT * FROM student WHERE id=#{id}
     </select>
+
+    <delete id="delStuById" parameterType="Int">
+        DELETE FROM student WHERE id=#{id}
+    </delete>
 </mapper>			

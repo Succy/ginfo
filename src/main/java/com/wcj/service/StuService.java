@@ -11,4 +11,7 @@ public interface StuService {
     int importStus(FileInputStream in)throws Exception;
     Map<String, Object> getStuList(int rows, int page, String searchArg) throws Exception;
     List<Student> exportStus() throws Exception;
+    Student findStuById(int id) throws Exception;
+    boolean updateStuById(Student stu) throws Exception;
+    boolean delStuById(int id) throws Exception;
 }
