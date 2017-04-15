@@ -40,7 +40,7 @@ public class AdminServiceImpl implements AdminService {
         Admin adminById = mapper.findAdminById(id);
         if (adminById != null) {
             adminById.assign(admin);
-           return updateAdminById(adminById);
+            return mapper.updateAdminById(adminById);
         }
 
         return false;
@@ -60,10 +60,15 @@ public class AdminServiceImpl implements AdminService {
                 if (result)
                     rt = Constant.RespCode.OK;
 
-            }else {
+            } else {
                 rt = Constant.RespCode.OLD_PWD_ERR;
             }
         }
         return rt;
+    }
+
+    @Override
+    public Admin findAdminByTidAndEmail(Admin admin) throws Exception {
+        return mapper.findAdminByTidAndEmail(admin);
     }
 }

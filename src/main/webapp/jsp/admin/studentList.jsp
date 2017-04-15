@@ -71,9 +71,19 @@
 <body>
 <section class="">
     <div class="layui-tab">
+
+        <form action="/user/importStus.action" id="import-fm" method="post" enctype="multipart/form-data"
+              style="display: none">
+            <input type="file" name="file" id="open">
+        </form>
+
         <blockquote class="layui-elem-quote">
             <ul class="layui-tab-title">
-                <li class="layui-btn "><i class="layui-icon">&#xe62f;</i>导入学生信息</li>
+
+                <li class="layui-btn" id="importStus">
+                    <i class="layui-icon">&#xe601;</i>导入学生信息</a>
+                </li>
+
                 <a href="/user/exportStus.action" class="layui-btn"><i class="layui-icon">&#xe601;</i>导出学生信息</a>
                 <li class="layui-btn "><i class="layui-icon">&#xe608;</i>添加学生信息</li>
                 <li class="search-box">
@@ -125,11 +135,29 @@
     </div>
 </section>
 <script src="../../js/jquery-1.11.1.min.js"></script>
+<script src="../../js/jquery.form.js"></script>
 <script type="text/javascript" src="../../layui/layui.all.js"></script>
 <script type="text/javascript">
     var totalPage = 1;
     var layer = layui.layer;
     var laypage = layui.laypage;
+    $("#importStus").click(function () {
+        $("#open").click();
+    });
+
+    $("#open").change(function () {
+        $("#import-fm").ajaxSubmit({
+            success: function (res) {
+                if (res.success) {
+                    layer.alert("成功导入学生" + res.count + "个");
+                    getStuList(10, 0);
+                    pagination();
+                } else {
+                    layer.alert("导入学生信息失败，请稍后重试");
+                }
+            }
+        })
+    })
 
     $("#search-input").focus(function () {
         $(".search-box").removeClass("layui-this");
@@ -140,7 +168,19 @@
         getStuList(10, 0, searchArg);
         pagination();
     });
-
+    function delStu(id) {
+        layer.confirm("你确定要删除该学生信息？", function () {
+            $.post("/user/delStu.action",{"id":id},function (res) {
+                if (res.success) {
+                    layer.alert("成功删除！");
+                    getStuList(10, 0);
+                    pagination();
+                }else {
+                    layer.msg("网络繁忙，请稍后重试");
+                }
+            },"json");
+        })
+    }
     function getStuList(rows, page, searchArg) {
         $.ajax({
             url: "/user/getStuList.action",
@@ -153,13 +193,15 @@
                     var total = data.total;
                     totalPage = total % rows == 0 ? total / rows : total / rows + 1;
                     $("#listTb tbody").empty();
+
+
                     $.each(data.result, function (index, item) {
                         $("#listTb tbody").append(
                                 "<tr>" +
                                 "<td>" + item.name + "</td><td>" + item.gender + "</td><td>" + item.birth + "</td><td>" + item.nation + "</td>" +
                                 "<td>" + item.sid + "</td><td>" + item.school + "</td><td>" + item.collage + "</td><td>" + item.major + "</td><td>" + item.grade + "</td>" +
                                 "<td>" + item.politics_status + "</td><td class='address'>" + item.address + "</td><td>" + item.qq + "</td><td>" + item.email + "</td>" +
-                                "<td>" + item.mobi + "</td><td class='operation'><a href='javascript:;' tip='删除'><i class='layui-icon' >&#xe640;</i></a><a href='javascript:;' tip='编辑'><i class='layui-icon'>&#xe642;</i></a><a href='javascript:;' tip='详情'><i class='layui-icon'>&#xe607;</i></td>" +
+                                "<td>" + item.mobi + "</td><td class='operation'><a href='javascript:;' onclick='delStu("+item.id+")' tip='删除'><i class='layui-icon' >&#xe640;</i></a><a href='javascript:;' tip='编辑'><i class='layui-icon'>&#xe642;</i></a><a href='javascript:;' tip='详情'><i class='layui-icon'>&#xe607;</i></td>" +
                                 "</tr>");
                     });
                     $(".operation>a").mouseover(function () {

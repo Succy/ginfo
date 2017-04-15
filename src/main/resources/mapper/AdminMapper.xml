@@ -12,4 +12,8 @@
     <select id="findAdminById" parameterType="int" resultType="Admin">
         SELECT * FROM admin WHERE id=#{id}
     </select>
+
+    <select id="findAdminByTidAndEmail" parameterType="Admin" resultType="Admin">
+        SELECT * FROM admin WHERE tid=#{tid} AND email = #{email};
+    </select>
 </mapper>

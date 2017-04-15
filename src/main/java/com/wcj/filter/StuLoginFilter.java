@@ -34,10 +34,10 @@ public class StuLoginFilter implements Filter {
             if (student != null) {
                 chain.doFilter(req, resp);
             } else {
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("/login.jsp");
             }
         } else {
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("/login.jsp");
         }
     }
 

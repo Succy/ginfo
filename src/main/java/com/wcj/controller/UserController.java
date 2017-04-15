@@ -1,5 +1,6 @@
 package com.wcj.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wcj.entity.Admin;
 import com.wcj.entity.Student;
@@ -77,6 +78,61 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/updateInfo.action")
+    public
+    @ResponseBody
+    JSONObject updateInfo(Student stu, HttpSession session) {
+        //System.out.println("stu  ==> "+stu);
+        JSONObject json = new JSONObject();
+        boolean success = Constant.FAILURE;
+        try {
+            success = stuService.updateStuById(stu);
+            Student stuById = stuService.findStuById(stu.getId());
+            session.setAttribute("student", stuById);
+            json.put("msg", "更新用户信息成功");
+
+        } catch (Exception e) {
+            json.put("msg", "更新用户信息失败，请稍后重试");
+        }
+        json.put("success", success);
+        return json;
+    }
+
+    @RequestMapping("/forgetPwd.action")
+    public
+    @ResponseBody
+    JSONObject forgetPwd(String email, String sid, String pwd, boolean isStu) {
+        JSONObject json = new JSONObject();
+        boolean success = Constant.FAILURE;
+
+        try {
+            if (isStu) {
+                Student stu = new Student();
+                stu.setSid(sid);
+                stu.setEmail(email);
+                Student student = stuService.findStuBySidAndEmail(stu);
+                // String pwd = stu.getPwd();
+                pwd = EncryptorUtils.md5(Constant.SALT, pwd);
+                student.setPwd(pwd);
+                success = stuService.updateStuById(student);
+            } else {
+                Admin admin = new Admin();
+                admin.setTid(sid);
+                admin.setEmail(email);
+                Admin adminByTidAndEmail = adminService.findAdminByTidAndEmail(admin);
+                //String pwd = admin.getPwd();
+                pwd = EncryptorUtils.md5(Constant.SALT, pwd);
+                adminByTidAndEmail.setPwd(pwd);
+                success = adminService.updateAdminById(adminByTidAndEmail);
+            }
+            json.put("msg", "修改密码成功");
+        } catch (Exception e) {
+            json.put("msg", "修改密码失败，请稍后重试");
+        }
+        json.put("success", success);
+        return json;
+    }
+
     @RequestMapping("/updatePwd.action")
     public
     @ResponseBody
@@ -150,6 +206,23 @@ public class UserController {
             success = false;
         }
         String msg = success ? "图片上传成功" : "图片上传失败";
+        json.put("success", success);
+        json.put("msg", msg);
+        return json;
+    }
+
+    @RequestMapping("/delStu.action")
+    public
+    @ResponseBody
+    JSONObject delStu(int id) {
+        JSONObject json = new JSONObject();
+        boolean success;
+        try {
+            success = stuService.delStuById(id);
+        } catch (Exception e) {
+            success = Constant.FAILURE;
+        }
+        String msg = success ? "删除学生信息成功" : "删除学生信息失败";
         json.put("success", success);
         json.put("msg", msg);
         return json;

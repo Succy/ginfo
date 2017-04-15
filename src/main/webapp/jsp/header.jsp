@@ -6,7 +6,6 @@
             <li class="layui-nav-item">${student.name}，欢迎您</li>
             <li class="layui-nav-item fr"><a href="/user/logout.action?isStu=true">退出</a></li>
             <li class="layui-nav-item fr"><a href="javascript:;" id="modify-pwd">修改密码</a></li>
-            <li class="layui-nav-item fr"><a href="javascript:;">消息</a></li>
         </ul>
     </div>
 </div>

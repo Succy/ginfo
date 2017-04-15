@@ -29,6 +29,10 @@ public class Student {
     private String email;// 邮箱
     private String avatar;// 头像
     private String address;// 家庭住址
+    private String workInfo;// 实习经历
+    private String expectWork;// 期望工作
+    private String production;// 作品展示
+    private String skill;// 技能
 
     private Map<String, String> stuMap = new HashMap<>();
 
@@ -50,6 +54,66 @@ public class Student {
         this.qq = map.get(Constant.Info.Stu.QQ);
         this.email = map.get(Constant.Info.Stu.EMAIL);
         this.address = map.get(Constant.Info.Stu.ADDRESS);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sid='" + sid + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birth='" + birth + '\'' +
+                ", nation='" + nation + '\'' +
+                ", politics_status='" + politics_status + '\'' +
+                ", school='" + school + '\'' +
+                ", collage='" + collage + '\'' +
+                ", major='" + major + '\'' +
+                ", grade='" + grade + '\'' +
+                ", mobi='" + mobi + '\'' +
+                ", qq='" + qq + '\'' +
+                ", email='" + email + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", address='" + address + '\'' +
+                ", workInfo='" + workInfo + '\'' +
+                ", expectWork='" + expectWork + '\'' +
+                ", production='" + production + '\'' +
+                ", skill='" + skill + '\'' +
+                ", stuMap=" + stuMap +
+                '}';
+    }
+
+    public String getWorkInfo() {
+        return workInfo;
+    }
+
+    public void setWorkInfo(String workInfo) {
+        this.workInfo = workInfo;
+    }
+
+    public String getExpectWork() {
+        return expectWork;
+    }
+
+    public void setExpectWork(String expectWork) {
+        this.expectWork = expectWork;
+    }
+
+    public String getProduction() {
+        return production;
+    }
+
+    public void setProduction(String production) {
+        this.production = production;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
     }
 
     public String getAddress() {
@@ -258,30 +322,18 @@ public class Student {
         if (!StringUtils.isEmpty(stu.getNation())) {
             this.nation = stu.getNation();
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", sid='" + sid + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", gender='" + gender + '\'' +
-                ", birth='" + birth + '\'' +
-                ", nation='" + nation + '\'' +
-                ", politics_status='" + politics_status + '\'' +
-                ", school='" + school + '\'' +
-                ", collage='" + collage + '\'' +
-                ", major='" + major + '\'' +
-                ", grade='" + grade + '\'' +
-                ", mobi='" + mobi + '\'' +
-                ", qq='" + qq + '\'' +
-                ", email='" + email + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", address='" + address + '\'' +
-                ", stuMap=" + stuMap +
-                '}';
+        if (!StringUtils.isEmpty(stu.getWorkInfo())) {
+            this.workInfo = stu.getWorkInfo();
+        }
+        if (!StringUtils.isEmpty(stu.production)) {
+            this.production = stu.getProduction();
+        }
+        if (!StringUtils.isEmpty(stu.skill)) {
+            this.skill = stu.getSkill();
+        }
+        if (!StringUtils.isEmpty(stu.getExpectWork())) {
+            this.expectWork = stu.getExpectWork();
+        }
     }
 
 }

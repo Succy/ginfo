@@ -14,6 +14,28 @@ public class Admin {
     private String dept;
     private String pwd;
     private String title;
+    private String email;
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", tid='" + tid + '\'' +
+                ", dept='" + dept + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", title='" + title + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Admin() {
     }
@@ -82,17 +104,9 @@ public class Admin {
         if (!StringUtils.isEmpty(admin.getName())) {
             this.name = admin.getName();
         }
+        if (!StringUtils.isEmpty(admin.getEmail())) {
+            this.email = admin.getEmail();
+        }
     }
 
-    @Override
-    public String toString() {
-        return "Admin{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", tid='" + tid + '\'' +
-                ", dept='" + dept + '\'' +
-                ", pwd='" + pwd + '\'' +
-                ", title='" + title + '\'' +
-                '}';
-    }
 }

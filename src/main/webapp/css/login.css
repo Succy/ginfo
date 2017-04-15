@@ -106,4 +106,8 @@ footer .f-msg {
 .form-item .login-btn:hover {
     cursor: pointer;
 }
-
+.forgetPwd {
+    margin-left: -10px;
+    padding: 10px 20px 10px 10px;
+    display: none;
+}

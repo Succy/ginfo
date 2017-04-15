@@ -34,7 +34,7 @@
 
     <update id="updateStuById" parameterType="Student">
         UPDATE student SET sid = #{sid},  name=#{name},  gender = #{gender},  pwd = #{pwd}, address = #{address}, school = #{school}, collage=#{collage}, major=#{major}, grade=#{grade},  birth=#{birth},  nation=#{nation},
-         politics_status=#{politics_status}, qq=#{qq}, mobi=#{mobi}, email = #{email}, avatar=#{avatar} WHERE id = #{id}
+         politics_status=#{politics_status},skill=#{skill},production=#{production},expectWork=#{expectWork},workInfo=#{workInfo}, qq=#{qq}, mobi=#{mobi}, email = #{email}, avatar=#{avatar} WHERE id = #{id}
     </update>
 
     <select id="findStuById" resultType="Student" parameterType="int">
@@ -44,4 +44,8 @@
     <delete id="delStuById" parameterType="Int">
         DELETE FROM student WHERE id=#{id}
     </delete>
+
+    <select id="findStuBySidAndEmail" parameterType="Student" resultType="Student">
+        SELECT * FROM student WHERE sid=#{sid} AND email=#{email}
+    </select>
 </mapper>			

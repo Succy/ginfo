@@ -3,12 +3,14 @@
     width: 70%;
     margin:  0 auto;
     padding-top: 80px;
+    padding-bottom: 80px;
+
 
 }
 
 .site-main > .left-box {
     width: 70%;
-    height: 700px;
+    /*height: 700px;*/
     padding: 10px;
     background-color: #FAFAFA;
 }
@@ -95,3 +97,13 @@
 .site-tree >ul>li>a:hover{
     background-color: #fafafa;
 }
+
+.work-info,.skill-info,.expect-work {
+    padding:15px;
+    min-height: 100px;
+}
+.work-info:hover,.skill-info:hover,.expect-work:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+

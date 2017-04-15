@@ -43,7 +43,13 @@ public class StuServiceImpl implements StuService {
     @Override
     public int importStus(FileInputStream in) throws Exception {
         List<Student> students = POIUtils.importExcel(in);
+
         if (students != null && !students.isEmpty()) {
+            for (Student student : students) {
+                if (StringUtils.isEmpty(student.getPwd())){
+                    student.setPwd(EncryptorUtils.md5(Constant.SALT, "123456"));
+                }
+            }
             int count = stuMapper.insertStus(students);
             return count;
         }
@@ -113,7 +119,7 @@ public class StuServiceImpl implements StuService {
                 if (result)
                     rt = Constant.RespCode.OK;
 
-            }else {
+            } else {
                 rt = Constant.RespCode.OLD_PWD_ERR;
             }
         }
@@ -123,5 +129,10 @@ public class StuServiceImpl implements StuService {
     @Override
     public boolean delStuById(int id) throws Exception {
         return stuMapper.delStuById(id);
+    }
+
+    @Override
+    public Student findStuBySidAndEmail(Student stu) throws Exception {
+        return stuMapper.findStuBySidAndEmail(stu);
     }
 }
