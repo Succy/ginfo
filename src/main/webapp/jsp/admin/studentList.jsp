@@ -201,7 +201,7 @@
                                 "<td>" + item.name + "</td><td>" + item.gender + "</td><td>" + item.birth + "</td><td>" + item.nation + "</td>" +
                                 "<td>" + item.sid + "</td><td>" + item.school + "</td><td>" + item.collage + "</td><td>" + item.major + "</td><td>" + item.grade + "</td>" +
                                 "<td>" + item.politics_status + "</td><td class='address'>" + item.address + "</td><td>" + item.qq + "</td><td>" + item.email + "</td>" +
-                                "<td>" + item.mobi + "</td><td class='operation'><a href='javascript:;' onclick='delStu("+item.id+")' tip='删除'><i class='layui-icon' >&#xe640;</i></a><a href='javascript:;' tip='编辑'><i class='layui-icon'>&#xe642;</i></a><a href='javascript:;' tip='详情'><i class='layui-icon'>&#xe607;</i></td>" +
+                                "<td>" + item.mobi + "</td><td class='operation'><a href='javascript:;' onclick='delStu("+item.id+")' tip='删除'><i class='layui-icon' >&#xe640;</i></a><a href='javascript:;' tip='编辑'><i class='layui-icon'>&#xe642;</i></a><a href='/user/getStuById.action?id="+item.id+"' tip='详情' target='_blank'><i class='layui-icon'>&#xe607;</i></td>" +
                                 "</tr>");
                     });
                     $(".operation>a").mouseover(function () {

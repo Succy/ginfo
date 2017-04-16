@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
@@ -226,6 +227,20 @@ public class UserController {
         json.put("success", success);
         json.put("msg", msg);
         return json;
+    }
+
+    @RequestMapping("/getStuById.action")
+    public String getStuById(int id, HttpServletRequest request) {
+        try {
+            Student stu = stuService.findStuById(id);
+            if (stu != null) {
+                request.setAttribute("student", stu);
+                return "forward:/jsp/index.jsp";
+            }
+        }catch (Exception e) {
+
+        }
+        return "";
     }
 
     @RequestMapping("/importStus.action")

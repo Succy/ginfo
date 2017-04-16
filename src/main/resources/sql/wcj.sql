@@ -1,4 +1,4 @@
-/*
+﻿/*
 Navicat MySQL Data Transfer
 
 Source Server         : mysql
@@ -10,9 +10,11 @@ Target Server Type    : MYSQL
 Target Server Version : 50611
 File Encoding         : 65001
 
-Date: 2017-04-10 07:56:38
+Date: 2017-04-16 08:59:52
 */
 
+DROP DATABASE IF EXISTS wcj;
+CREATE DATABASE IF NOT EXISTS wcj DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
@@ -26,8 +28,9 @@ CREATE TABLE `admin` (
   `title` varchar(25) DEFAULT NULL,
   `dept` varchar(25) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
+  `email` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for student
@@ -51,6 +54,12 @@ CREATE TABLE `student` (
   `mobi` varchar(11) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
+  `workInfo` text,
+  `production` text,
+  `expectWork` text,
+  `skill` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sid` (`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+INSERT INTO admin(tid,pwd,name,title,email,dept) VALUES (10001, '1e466ba0517464a4c2a2bd11b8c0ab87','张三','管理员','admin@sina.com','计算机学院');

@@ -11,7 +11,7 @@
     <base href="<%=basePath%>%">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>主页</title>
+    <title>${student.name}的主页</title>
     <link rel="stylesheet" href="../layui/css/layui.css">
     <link rel="stylesheet" href="../css/commons.css">
     <link rel="stylesheet" href="../css/index.css">
