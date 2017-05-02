@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class StuServiceImpl implements StuService {
 
         if (students != null && !students.isEmpty()) {
             for (Student student : students) {
-                if (StringUtils.isEmpty(student.getPwd())){
+                if (StringUtils.isEmpty(student.getPwd())) {
                     student.setPwd(EncryptorUtils.md5(Constant.SALT, "123456"));
                 }
             }
@@ -134,5 +135,14 @@ public class StuServiceImpl implements StuService {
     @Override
     public Student findStuBySidAndEmail(Student stu) throws Exception {
         return stuMapper.findStuBySidAndEmail(stu);
+    }
+    // 新增
+    @Override
+    public boolean addStu(Student stu) throws Exception {
+        List<Student> list = new ArrayList<>();
+        list.add(stu);
+        int i = stuMapper.insertStus(list);
+
+        return i > 0;
     }
 }

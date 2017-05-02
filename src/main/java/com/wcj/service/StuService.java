@@ -1,6 +1,7 @@
 package com.wcj.service;
 
 import com.wcj.entity.Student;
+import com.wcj.util.Constant;
 
 import java.io.FileInputStream;
 import java.util.List;
@@ -24,4 +25,7 @@ public interface StuService {
     boolean delStuById(int id) throws Exception;
 
     Student findStuBySidAndEmail(Student stu) throws Exception;
+
+    // 新增
+    boolean addStu(Student stu) throws Exception;
 }

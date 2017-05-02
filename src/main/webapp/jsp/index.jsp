@@ -273,7 +273,7 @@
                 $(".ext-info-pop").hide();
             }
         });
-    })
+    });
 
     $(".base-info-box").click(function () {
         layer.open({

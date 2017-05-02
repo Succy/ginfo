@@ -48,4 +48,5 @@
     <select id="findStuBySidAndEmail" parameterType="Student" resultType="Student">
         SELECT * FROM student WHERE sid=#{sid} AND email=#{email}
     </select>
+
 </mapper>			

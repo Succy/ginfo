@@ -1,6 +1,5 @@
 package com.wcj.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.wcj.entity.Admin;
 import com.wcj.entity.Student;
@@ -25,7 +24,6 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +46,6 @@ public class UserController {
     @RequestMapping("/login.action")
     public String login(String sid, String pwd, boolean isStu, HttpSession session) {
         pwd = EncryptorUtils.md5(Constant.SALT, pwd);
-        // ModelAndView mdv = new ModelAndView();
         try {
             if (isStu) {
                 // 学生登录
@@ -237,7 +234,7 @@ public class UserController {
                 request.setAttribute("student", stu);
                 return "forward:/jsp/index.jsp";
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
 
         }
         return "";
@@ -330,5 +327,22 @@ public class UserController {
             e.printStackTrace();
         }
         return respEntity;
+    }
+
+    // 新增
+    @RequestMapping("/addStu.action")
+    public @ResponseBody JSONObject addStu(Student stu) {
+        JSONObject json = new JSONObject();
+        boolean success = Constant.FAILURE;
+        try {
+           // String pwd = stu.getPwd();
+            stu.setPwd(EncryptorUtils.md5(Constant.SALT, "123456"));
+            success = stuService.addStu(stu);
+
+        }catch (Exception e) {
+            //e.printStackTrace();
+        }
+        json.put("success", success);
+        return json;
     }
 }
